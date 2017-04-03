@@ -5,9 +5,12 @@ module.exports = async(uri, exchange) => {
   const connection = await amqp.connect(uri);
   const channel = await connection.createChannel();
 
+  await channel.assertExchange(exchange, 'topic', { durable: true });
+
   return async(routingKey, body) => {
     try {
-      channel.publish(exchange, routingKey, new Buffer(JSON.stringify(body)));
+      const message = new Buffer(JSON.stringify(body));
+      channel.publish(exchange, routingKey, message, { persistent: true });
       debug('published', { exchange, routingKey, body });
     } catch (err) {
       debug(err);

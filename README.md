@@ -1,5 +1,7 @@
 # FeathersJS AMQP events
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/kozzztya/feathers-amqp-events.svg)](https://greenkeeper.io/)
+
 Publish service events with using AMQP protocol.
 
 ## Usage

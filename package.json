@@ -16,7 +16,6 @@
     "lodash.map": "4.6.0"
   },
   "devDependencies": {
-    "amqp-helper": "2.0.0",
     "ava": "0.18.1",
     "babel-cli": "6.22.2",
     "babel-eslint": "6.0.4",
@@ -35,7 +34,7 @@
     "feathers-rest": "1.6.0",
     "mongoose": "4.8.1",
     "node-helpers": "1.1.8",
-    "shelljs": "^0.7.8"
+    "shelljs": "0.7.8"
   },
   "ava": {
     "require": "babel-register",

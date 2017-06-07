@@ -35,6 +35,7 @@
     "feathers-rest": "1.6.0",
     "mongoose": "4.8.1",
     "node-helpers": "1.1.8",
+    "nyc": "^11.0.2",
     "shelljs": "0.7.8"
   },
   "ava": {

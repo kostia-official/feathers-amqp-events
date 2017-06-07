@@ -5,8 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "prepublish": "npm run build",
-    "pretest": "npm run build",
-    "build": "babel -d dist/ src/",
+    "build": "rm -rf ./dist && babel -d dist/ src/",
     "test": "ava -vs test/*.test.js",
     "lint": "eslint --ignore-path .gitignore ./"
   },
@@ -35,7 +34,8 @@
     "feathers-mongoose": "4.0.1",
     "feathers-rest": "1.6.0",
     "mongoose": "4.8.1",
-    "node-helpers": "1.1.8"
+    "node-helpers": "1.1.8",
+    "shelljs": "^0.7.8"
   },
   "ava": {
     "require": "babel-register",

@@ -11,7 +11,7 @@ const defaultOptions = {
 module.exports = (userOptions) => async function () {
   const app = this;
   const opt = { ...defaultOptions, ...userOptions };
-  const publish = await publisher(opt.amqp.url, opt.amqp.exchange);
+  const publish = await publisher(opt.amqp);
 
   map(app.services, (service) => {
     map(service._serviceEvents, (eventName) => {

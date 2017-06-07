@@ -1,6 +1,9 @@
+[![Build Status](https://travis-ci.org/kozzztya/feathers-amqp-events.svg?branch=master)](https://travis-ci.org/kozzztya/feathers-amqp-events)
+
 # FeathersJS AMQP events
 
 Publish service events with using AMQP protocol.
+Supports reconnect on lost connection.
 
 ## Usage
 

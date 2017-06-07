@@ -3,16 +3,16 @@ const { timeout } = require('node-helpers');
 
 let channel;
 
-amqp.assertQueue = async function(queue, exchange, key) {
+amqp.assertQueue = async function (queue, exchange, key) {
   const connection = await amqp.connect('amqp://localhost');
   channel = await connection.createChannel();
 
-  await channel.assertExchange(exchange, 'direct');
+  await channel.assertExchange(exchange, 'topic');
   await channel.assertQueue(queue);
   await channel.bindQueue(queue, exchange, key);
 };
 
-amqp.fastConsume = async function(queue) {
+amqp.fastConsume = async function (queue) {
   await timeout(1000);
   const res = [];
 

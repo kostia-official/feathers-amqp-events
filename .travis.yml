@@ -5,3 +5,4 @@ services:
   - mongodb
   - rabbitmq
 cache: yarn
+sudo: required

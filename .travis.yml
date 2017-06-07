@@ -4,4 +4,4 @@ node_js:
 services:
   - mongodb
   - rabbitmq
-cache: npm
+cache: yarn

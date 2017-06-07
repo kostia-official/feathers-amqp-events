@@ -6,7 +6,7 @@
   "scripts": {
     "prepublish": "npm run build",
     "build": "rm -rf ./dist && babel -d dist/ src/",
-    "test": "ava -vs test/*.test.js && nyc report --reporter=text-lcov | coveralls",
+    "test": "ava -vs test/*.test.js",
     "lint": "eslint --ignore-path .gitignore ./"
   },
   "dependencies": {
@@ -25,7 +25,6 @@
     "babel-register": "6.22.0",
     "bluebird": "3.4.7",
     "body-parser": "1.16.0",
-    "coveralls": "^2.13.1",
     "eslint": "2.10.2",
     "eslint-config-airbnb": "9.0.1",
     "eslint-plugin-import": "1.8.1",
@@ -35,7 +34,6 @@
     "feathers-rest": "1.6.0",
     "mongoose": "4.8.1",
     "node-helpers": "1.1.8",
-    "nyc": "^11.0.2",
     "shelljs": "0.7.8"
   },
   "ava": {

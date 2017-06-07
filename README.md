@@ -1,5 +1,4 @@
 [![Build Status](https://travis-ci.org/kozzztya/feathers-amqp-events.svg?branch=master)](https://travis-ci.org/kozzztya/feathers-amqp-events)
-[![Coverage Status](https://coveralls.io/repos/github/kozzztya/feathers-amqp-events/badge.svg?branch=master)](https://coveralls.io/github/kozzztya/feathers-amqp-events?branch=master)
 
 # FeathersJS AMQP events
 

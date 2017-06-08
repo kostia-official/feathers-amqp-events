@@ -1,6 +1,6 @@
 {
   "name": "feathers-amqp-events-publish",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "Publish created, updated and removed events with using AMQP.",
   "main": "dist/index.js",
   "scripts": {

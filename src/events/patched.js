@@ -3,7 +3,7 @@ module.exports = (service, publish, opt) => {
     async patch(hook) {
       if (!opt.original) return hook;
 
-      hook.params.original = await this.get(hook.id);
+      hook.params.original = await this.get(hook.id, hook.params);
       return hook;
     }
   });

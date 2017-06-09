@@ -8,8 +8,12 @@ const queue = 'posts.created';
 const key = 'posts.created';
 const exchange = 'create';
 
-function restartRabbitMQ() {
-  sh.exec('sudo rabbitmqctl stop_app && sudo rabbitmqctl reset && sudo rabbitmqctl start_app');
+function stopRabbitMQ() {
+  sh.exec('sudo rabbitmqctl stop_app && sudo rabbitmqctl reset');
+}
+
+function startRabbitMQ() {
+  sh.exec('sudo rabbitmqctl start_app');
 }
 
 test('reconnect', async (t) => {
@@ -18,8 +22,10 @@ test('reconnect', async (t) => {
     original: true
   }));
 
-  await timeout(3000);
-  restartRabbitMQ();
+  await timeout(2000);
+  stopRabbitMQ();
+  await timeout(5000);
+  startRabbitMQ();
 
   await amqp.assertQueue(queue, exchange, key);
   await app.service('posts').create({ text });

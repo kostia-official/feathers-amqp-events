@@ -1,24 +1,18 @@
 const amqp = require('amqplib');
+const retry = require('bluebird-retry');
 const debug = require('debug')('amqp:events:publish');
 
-module.exports = async ({ uri, exchange }) => {
-  let amqp = await connect(uri);
+let instance;
 
-  amqp.connection.on('error', async (err) => {
-    debug('connection error', err);
-    amqp = await connect(uri);
-  });
-  amqp.connection.on('close', async () => {
-    debug('connection was closed');
-    amqp = await connect(uri);
-  });
+module.exports = async ({ url, exchange, retryOptions }) => {
+  instance = await connect(url, retryOptions);
 
-  await amqp.channel.assertExchange(exchange, 'topic', { durable: true });
+  await instance.channel.assertExchange(exchange, 'topic', { durable: true });
 
   return async (routingKey, body) => {
     try {
       const message = new Buffer(JSON.stringify(body));
-      amqp.channel.publish(exchange, routingKey, message, { persistent: true });
+      instance.channel.publish(exchange, routingKey, message, { persistent: true });
       debug('published', { exchange, routingKey, body });
     } catch (err) {
       debug(err);
@@ -26,8 +20,21 @@ module.exports = async ({ uri, exchange }) => {
   };
 };
 
-async function connect(uri) {
-  const connection = await amqp.connect(uri);
-  const channel = await connection.createChannel();
-  return { connection, channel };
+function connect(url, retryOptions) {
+  return retry(async () => {
+    const connection = await amqp.connect(url).catch(err => debug(err.message));
+    const channel = await connection.createChannel();
+
+    connection.on('error', async (err) => {
+      debug('connection error', err);
+      instance = await connect(url, retryOptions);
+    });
+    connection.on('close', async () => {
+      debug('connection was closed');
+      instance = await connect(url, retryOptions);
+    });
+
+    debug('connected');
+    return { connection, channel };
+  }, Object.assign({ max_tries: 1000, interval: 500, backoff: 1.1 }, retryOptions));
 }

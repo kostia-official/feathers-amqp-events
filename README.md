@@ -25,6 +25,7 @@ app.use(bodyParser.json())
     amqp: {
       url: 'amqp://localhost', // url to your RabbitMQ connection
       exchange: 'my-app'       // all events will be published to this exchange
+      retryOptions: { max_tries: 100, interval: 500 } // bluebird-retry options for reconnect
     },
     original: true             // publish object before update or not
   }));

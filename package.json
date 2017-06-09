@@ -1,12 +1,12 @@
 {
   "name": "feathers-amqp-events-publish",
-  "version": "0.4.1",
+  "version": "0.4.7",
   "description": "Publish created, updated and removed events with using AMQP.",
   "main": "dist/index.js",
   "scripts": {
     "prepublish": "npm run build",
     "build": "rm -rf ./dist && babel -d dist/ src/",
-    "test": "ava -vs test/*.test.js",
+    "test": "DEBUG=amqp* ava -vs test/*.test.js",
     "lint": "eslint --ignore-path .gitignore ./"
   },
   "dependencies": {
@@ -14,7 +14,8 @@
     "babel-runtime": "6.23.0",
     "debug": "2.6.1",
     "lodash.map": "4.6.0",
-    "require-dir": "0.3.2"
+    "require-dir": "0.3.2",
+    "unhandled-rejection": "^1.0.0"
   },
   "devDependencies": {
     "ava": "0.18.1",

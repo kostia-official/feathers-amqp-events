@@ -1,8 +1,12 @@
+const unhandledRejection = require('unhandled-rejection');
+const debug = require('debug');
 const map = require('lodash.map');
-
 const requireDir = require('require-dir');
 const events = requireDir('./events');
 const publisher = require('./publisher');
+
+const rejectionEmitter = unhandledRejection();
+rejectionEmitter.on('unhandledRejection', debug('amqp:error'));
 
 const defaultOptions = {
   original: false

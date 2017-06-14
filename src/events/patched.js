@@ -9,11 +9,11 @@ module.exports = (service, publish, opt) => {
   });
 
   service.after({
-    patch(hook) {
+    async patch(hook) {
       const routingKey = hook.path + '.updated';
       const original = (opt.original) ? hook.params.original : opt.original;
 
-      publish(routingKey, { data: hook.result, original });
+      await publish(routingKey, { data: hook.result, original });
 
       return hook;
     }

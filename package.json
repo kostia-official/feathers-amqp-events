@@ -12,6 +12,7 @@
   "dependencies": {
     "amqplib": "0.5.1",
     "babel-runtime": "6.23.0",
+    "bluebird-retry": "^0.11.0",
     "debug": "2.6.1",
     "lodash.map": "4.6.0",
     "require-dir": "0.3.2",

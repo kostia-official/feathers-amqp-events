@@ -8,18 +8,15 @@ Supports reconnect on lost connection.
 ## Usage
 
 ```js
-const feathers = require('feathers');
-const hooks = require('feathers-hooks');
-const rest = require('feathers-rest');
-const bodyParser = require('body-parser');
+const feathers = require('@feathersjs/feathers');
+const express = require('@feathersjs/express');
 const services = require('./services');
 const amqpEvents = require('feathers-amqp-events');
-const app = feathers();
+const app = express(feathers());
 
-app.use(bodyParser.json())
-  .use(bodyParser.urlencoded({ extended: true }))
-  .configure(hooks())
-  .configure(rest())
+app.use(express.json())
+  .use(express.urlencoded({ extended: true }))
+  .configure(express.rest())
   .configure(services())
   .configure(amqpEvents({
     amqp: {
@@ -48,5 +45,5 @@ Routing key for every event will looks like `<path>.<event>`. For example:
 
 Message content will have following fields:
 
-- data - created, removed or updated object. 
+- data - created, removed or updated object.
 - original - object before update.

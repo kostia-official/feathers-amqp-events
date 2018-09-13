@@ -1,6 +1,6 @@
 module.exports = (service, publish) => {
   service.hooks({
-    after : {
+    after: {
       async create(hook) {
         const routingKey = hook.path + '.created';
 

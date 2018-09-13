@@ -17,5 +17,5 @@ test.serial('ignore', async(t) => {
   await app.service('replies').create({ text });
 
   const res = await amqp.fastConsume(queue);
-  t.is(res.length,0);
+  t.is(res.length, 0);
 });

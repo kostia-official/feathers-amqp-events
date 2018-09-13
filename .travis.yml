@@ -4,5 +4,13 @@ node_js:
 services:
   - mongodb
   - rabbitmq
-cache: yarn
+cache:
+  directories:
+  - $HOME/.npm
 sudo: required
+deploy:
+  provider: npm
+  email: kozzztya@gmail.com
+  api_key: $NPM_AUTH_TOKEN
+  on:
+    branch: master

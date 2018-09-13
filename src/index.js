@@ -19,10 +19,15 @@ module.exports = (userOptions) => async function () {
   const publish = await publisher(opt.amqp);
 
   map(app.services, (service, serviceName) => {
+    if (userOptions.services && !includes(userOptions.services, serviceName)) {
+      debug('amqp:events:publish')(`service '${serviceName}' not selected, not being published.`);
+      return service;
+    } else
     if (userOptions.ignoreServices && includes(userOptions.ignoreServices, serviceName)) {
       debug('amqp:events:publish')(`service '${serviceName}' ignored, not being published.`);
       return service;
     }
+    debug('amqp:events:publish')(`service '${serviceName}' selected, publishing.`);
 
     map(service._serviceEvents, (eventName) => {
       const event = events[eventName];

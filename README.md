@@ -25,7 +25,9 @@ app.use(express.json())
       retryOptions: { max_tries: 100, interval: 500 } // bluebird-retry options for reconnect
     },
     original: true ,            // publish object before update or not
-    ignoreServices: ['service-name']  //optional. To stop specific services from being published to RabbitMQ
+    // the following are optional. No need to set them if you want to publish all of your services to RabbitMQ
+    services: ['allow-this-service'],  // optional. To only allow specific services to be published to RabbitMQ
+    ignoreServices: ['ignore-this-service']  // optional. To stop specific services from being published to RabbitMQ
   }));
 
 module.exports = app;

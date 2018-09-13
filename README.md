@@ -24,7 +24,8 @@ app.use(express.json())
       exchange: 'my-app'       // all events will be published to this exchange
       retryOptions: { max_tries: 100, interval: 500 } // bluebird-retry options for reconnect
     },
-    original: true             // publish object before update or not
+    original: true ,            // publish object before update or not
+    ignoreServices: ['service-name']  //optional. To stop specific services from being published to RabbitMQ
   }));
 
 module.exports = app;

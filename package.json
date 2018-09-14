@@ -14,6 +14,7 @@
     "debug": "2.6.1",
     "lodash.includes": "^4.3.0",
     "lodash.map": "4.6.0",
+    "lodash.pickby": "^4.6.0",
     "require-dir": "0.3.2",
     "unhandled-rejection": "^1.0.0"
   },

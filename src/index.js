@@ -19,14 +19,14 @@ module.exports = (userOptions) => async function () {
   const opt = { ...defaultOptions, ...userOptions };
   const publish = await publisher(opt.amqp);
 
-  let servicesToPublish = pickBy(app.services, (service, serviceName) =>
+  const servicesToPublish = pickBy(app.services, (service, serviceName) =>
     // Choose to publish service if:
     // 1. the list of allowed services is not provided OR if it is, the service is in the list
     (!userOptions.services  || includes(userOptions.services, serviceName)) &&
     // and
     // 2. if the list of ignored services is not provided or if it is, the service is not there.
     (!userOptions.ignoreServices || !includes(userOptions.ignoreServices, serviceName))
-  )
+  );
 
   map(servicesToPublish, (service, serviceName) => {
     debug('amqp:events:publish')(`publishing service '${serviceName}'`);

@@ -18,9 +18,6 @@ test.serial('remove', async(t) => {
 
   const post = await Post.create({ text });
 
-  console.log('POST is',post)
-  console.log('removing post with ID',post._id)
-
   await Post.remove(post._id);
 
   const res = await amqp.fastConsume(queue);

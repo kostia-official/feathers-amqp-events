@@ -13,6 +13,9 @@ app.use(express.json())
   .configure(express.rest())
   .use('/posts', service({
     Model: db.model('post')
+  }))
+  .use('/replies', service({
+    Model: db.model('reply')
   }));
 
 module.exports = { app, test, amqp, lib };

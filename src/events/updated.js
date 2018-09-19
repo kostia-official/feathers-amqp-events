@@ -8,7 +8,7 @@ module.exports = (service, publish, opt) => {
         return hook;
       }
     },
-    after:  {
+    after: {
       async update(hook) {
         const routingKey = hook.path + '.updated';
         const original = (opt.original) ? hook.params.original : opt.original;

@@ -5,5 +5,6 @@ const connection = mongoose.createConnection('mongodb://localhost:27017/mongoose
 
 const schema = new mongoose.Schema({ text: String });
 mongoose.model('post', schema);
+mongoose.model('reply', schema);
 
 module.exports = connection;
